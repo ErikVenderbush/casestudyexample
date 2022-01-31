@@ -1,6 +1,6 @@
 <jsp:include page="../include/header.jsp" />
 
-    <form method="GET" action="/registerSubmit">
+    <form method="GET" action="/registration-url-path/registerSubmit">
         <label>Email: </label>
         <input type="email" name="email"><br>
         <label>First Name: </label>
