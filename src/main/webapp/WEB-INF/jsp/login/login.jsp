@@ -1,6 +1,6 @@
-<html>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<body>
+<jsp:include page="../include/header.jsp" />
 
     <h1>Login</h1>
 
@@ -14,6 +14,4 @@
 
     <h4>${invalidCredError}</h4>
 
-</body>
-
-</html>
+<jsp:include page="../include/footer.jsp" />

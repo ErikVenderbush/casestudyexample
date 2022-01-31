@@ -1,18 +1,44 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <jsp:include page="../include/header.jsp" />
 
-    <form method="GET" action="/registration-url-path/registerSubmit">
-        <label>Email: </label>
-        <input type="email" name="email"><br>
-        <label>First Name: </label>
-        <input type="text" name="firstName"><br>
-        <label>Last Name: </label>
-        <input type="text" name="lastName"><br>
-        <label>Password: </label>
-        <input type="password" name="password"><br>
-        <label>Confirm Password: </label>
-        <input type="password" name="confirmPassword"><br>
-        <button type="submit">Submit</button>
-    </form>
+<form method="GET" action="/registration-url-path/registerSubmit">
 
+    <table cellpadding="5">
+        <tr>
+            <td>Email</td>
+            <td><input type="text" name="email" value="${formBeanKey.email}"><td>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td><input type="text" name="firstName" value="${formBeanKey.firstName}"><td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><input type="text" name="lastName" value="${formBeanKey.lastName}"><td>
+        </tr>
+        <tr>
+            <td>Age</td>
+            <td><input type="number" name="age" value="${formBeanKey.age}"><td>
+        </tr>
+        <tr>
+            <td>Password</td><td>
+            <input type="password" name="password" value="${formBeanKey.password}"><td>
+        </tr>
+        <tr>
+            <td>Confirm Password</td>
+            <td><input type="password" name="confirmPassword" value="${formBeanKey.confirmPassword}"><td>
+        </tr>
+    </table>
+
+    <button type="submit">Submit</button>
+
+</form>
+
+<div >
+    <c:forEach items="${formBeanKey.errorMessages}" var="message">
+        <span style="color: red">${message}</span><br>
+    </c:forEach>
+</div>
 
 <jsp:include page="../include/footer.jsp" />
