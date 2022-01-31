@@ -4,13 +4,15 @@
 
     <h1>Login</h1>
 
-    <form method="get" action="/loginSubmit">
+    <form method="get" action="/loginSubmit2">
         <label>Username: </label>
-        <input type="text" name="username"><br>
+        <input type="text" name="usernameFromForm"><br>
         <label>Password: </label>
-        <input type="password" name="password"><br>
+        <input type="password" name="passwordFromForm"><br>
         <button type="submit">Login</button>
     </form>
+
+    <h4>${invalidCredError}</h4>
 
 </body>
 

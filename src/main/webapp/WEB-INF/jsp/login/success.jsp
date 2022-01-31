@@ -3,7 +3,7 @@
 <body>
 
     <h1>Success!</h1>
-    <p>Welcome, ${username}</p>
+    <p>Welcome, ${user}</p>
 
 </body>
 
