@@ -4,7 +4,13 @@
 
 <form method="GET" action="/registration-url-path/registerSubmit">
 
+    <h1>Register</h1>
+
     <table cellpadding="5">
+        <tr>
+            <td>Username</td>
+            <td><input type="text" name="username" value="${formBeanKey.username}"><td>
+        </tr>
         <tr>
             <td>Email</td>
             <td><input type="text" name="email" value="${formBeanKey.email}"><td>
@@ -31,7 +37,7 @@
         </tr>
     </table>
 
-    <button type="submit">Submit</button>
+    <button class="btn btn-secondary" type="submit">Submit</button>
 
 </form>
 

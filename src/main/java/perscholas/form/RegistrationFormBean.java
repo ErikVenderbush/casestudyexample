@@ -15,6 +15,9 @@ import java.util.*;
 
 public class RegistrationFormBean {
 
+    @NotEmpty
+    private String username;
+
     // Not null AND not empty string (e.g. "")
     @NotEmpty(message = "Email is required")
     @Pattern(regexp = "^.+@.+$" , message = "Invalid email format")

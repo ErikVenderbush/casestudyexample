@@ -1,3 +1,6 @@
+### Custom ###
+src/main/resources/application.properties
+
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
@@ -51,4 +54,3 @@ build/
 *.ear
 *.zip
 *.tar.gz
-*.rar

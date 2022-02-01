@@ -9,7 +9,7 @@
         <input type="text" name="usernameFromForm"><br>
         <label>Password: </label>
         <input type="password" name="passwordFromForm"><br>
-        <button type="submit">Login</button>
+        <button class="btn btn-secondary" type="submit">Login</button>
     </form>
 
     <h4>${invalidCredError}</h4>

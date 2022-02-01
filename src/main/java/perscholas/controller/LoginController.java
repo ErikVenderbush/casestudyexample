@@ -1,6 +1,7 @@
 package perscholas.controller;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import perscholas.database.dao.UserDAO;
+import perscholas.database.entity.User;
 import perscholas.form.LoginFormBean;
 
 @Controller
@@ -17,6 +20,10 @@ public class LoginController {
     private static final String SESSION_KEY = "sessionUser";
     private static final String SESSION_ERROR = "errorMessageKey";
     private static final String INVALID_CRED_ERROR = "Invalid Credentials<br>Please try again";
+
+    @Autowired
+    public UserDAO userDao;
+    public User user;
 
     // this method is checking to see if the user is logged in by looking at the session
     // if logged in ( user is in the session ) then show the success page.
@@ -31,7 +38,7 @@ public class LoginController {
             System.out.println("/login: Trying to get session user and got: " + sessionUser);
 
             // Check if username matches
-            if (StringUtils.equals(sessionUser, "tom")) {
+            if (StringUtils.equals(sessionUser, user.getUsername())) {
                 response.setViewName("redirect:/success"); // redirects to URL
             } else {
                 System.out.println("User not found");
@@ -91,18 +98,22 @@ public class LoginController {
         String username = form.getUsernameFromForm();
         String password = form.getPasswordFromForm();
 
+        user = userDao.findByUsername(username);
+
         // Checks credentials against expected
-        if (StringUtils.equals(username, "tom") && StringUtils.equals(password, "jerry")) {
-            session.setAttribute(SESSION_KEY, username);
-            session.setAttribute(INVALID_CRED_ERROR, null);
-            // This redirects to success method/URL
-            response.setViewName("redirect:/success"); // redirects to URL
-        } else {
-            // This goes back to login method/URL
-            System.out.println("/loginSubmit: Incorrect Credentials");
-            session.setAttribute(SESSION_KEY, null);
-            session.setAttribute(INVALID_CRED_ERROR, "Invalid Credentials<br>Please try again");
-            response.setViewName("redirect:/login"); // redirects to URL
+        if (!user.equals(null)) {
+            if (StringUtils.equals(username, user.getUsername()) && StringUtils.equals(password, user.getPassword())) {
+                session.setAttribute(SESSION_KEY, username);
+                session.setAttribute(INVALID_CRED_ERROR, null);
+                // This redirects to success method/URL
+                response.setViewName("redirect:/success"); // redirects to URL
+            } else {
+                // This goes back to login method/URL
+                System.out.println("/loginSubmit: Incorrect Credentials");
+                session.setAttribute(SESSION_KEY, null);
+                session.setAttribute(INVALID_CRED_ERROR, "Invalid Credentials<br>Please try again");
+                response.setViewName("redirect:/login"); // redirects to URL
+            }
         }
 
         return response;
@@ -116,7 +127,7 @@ public class LoginController {
         String sessionUser = (String) session.getAttribute(SESSION_KEY);
 
         // Checks
-        if (StringUtils.equals(sessionUser, "tom")) {
+        if (StringUtils.equals(sessionUser, user.getUsername())) {
             // This is going to the JSP page
             response.addObject("user", sessionUser);
             response.setViewName("login/success"); // sets view to JSP
@@ -125,6 +136,23 @@ public class LoginController {
             System.out.println("/loginSubmit2: Incorrect Credentials");
             response.setViewName("redirect:/login"); // redirects to URL
         }
+
+        return response;
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public ModelAndView logout(HttpSession session) throws Exception {
+        // this is how to destroy the current user session
+        // always implement a logout method this way.
+        session.invalidate();
+        ModelAndView response = new ModelAndView();
+        // this is how to do a redirect in spring mvc usin the model
+        // this will change the url to be localhost:8080/login
+        // which is preferable because the URL is the same as the page you are on
+        response.setViewName("redirect:/login");
+
+        // doing it this way will work but is not best practice
+        //response.setViewName("login/login");
 
         return response;
     }
