@@ -1,6 +1,8 @@
 package perscholas.controller;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,8 +22,20 @@ import java.util.List;
 @RequestMapping("/registration-url-path")
 public class RegistrationController {
 
+    public static final Logger LOG = LoggerFactory.getLogger(RegistrationController.class);
+
     @Autowired
     public UserDAO userDao;
+
+    // 1) use the existing request mapping to do a firstname OR lastname search case insensitve
+
+    // 2) implement the ability to search by first name AND last name case insensitive - this is a new form on the jsp page
+    // I want you to make a new controller request mapping to handle the first name and last name search
+
+    // 3) in both cases I want you to pass the incoming search parameter back to the jsp page using the model
+    // I want to populate the search input with the incoming search parameter
+
+    // 4) get your logback config setup and log out stuff to debug
 
     @RequestMapping(value = "/userList", method = RequestMethod.GET)
     public ModelAndView userList(@RequestParam(required = false) String search) throws Exception {
