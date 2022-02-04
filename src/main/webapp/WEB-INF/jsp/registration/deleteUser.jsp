@@ -2,8 +2,6 @@
 
 <jsp:include page="../include/header.jsp"/>
 
-<h1>Index Submit</h1>
-<p>Hello ${firstName}</p>
-<p>Your username is ${username}</p>
+<h1>Deleted user ${user.username}</h1>
 
 <jsp:include page="../include/footer.jsp"/>

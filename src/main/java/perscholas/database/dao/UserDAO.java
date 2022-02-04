@@ -9,16 +9,20 @@ import perscholas.database.entity.UserRole;
 import java.util.List;
 
 public interface UserDAO extends JpaRepository<User, Long> {
-
-    public User findById(@Param("id") Integer id);
-
-    public User findByEmail(@Param("email") String email);
-
-    public User findByUsername(@Param("username") String username);
-
-    @Query("select u from User u where u.firstName = :firstName")
-    List<User> findByFirstName(@Param("firstName") String firstName);
-
-    @Query("select ur from UserRole ur where ur.user.id = :userId")
-    List<UserRole> getUserRoles(Integer userId);
+	
+	public User findById(@Param("id") Integer id);
+	
+	public User findByEmail(@Param("email") String email);
+	
+	public User findByUsername(@Param("username") String username);
+	
+	public List<User> findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(@Param("firstName") String firstName, @Param("lastName") String lastName);
+	
+	public List<User> findByFirstNameContainingIgnoreCaseAndLastNameContainingIgnoreCase(@Param("firstName") String firstName, @Param("lastName") String lastName);
+	
+	@Query("select u from User u where u.firstName = :firstName")
+	List<User> findByFirstName(@Param("firstName") String firstName);
+	
+	@Query("select ur from UserRole ur where ur.user.id = :userId")
+	List<UserRole> getUserRoles(Integer userId);
 }
