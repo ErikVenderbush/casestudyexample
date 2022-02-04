@@ -11,14 +11,13 @@ import javax.validation.Payload;
 
 @Documented
 @Constraint(validatedBy = EmailUniqueImpl.class)
-@Target( { ElementType.METHOD, ElementType.FIELD })
+@Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface EmailUnique {
-
-    String message() default "{UserEmailUnique}";
-
-    Class<?>[] groups() default {};
-
-    Class<? extends Payload>[] payload() default {};
-
+	
+	String message() default "{UserEmailUnique}";
+	
+	Class<?>[] groups() default {};
+	
+	Class<? extends Payload>[] payload() default {};
 }
