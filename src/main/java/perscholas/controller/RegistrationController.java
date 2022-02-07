@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -23,6 +24,9 @@ import java.util.List;
 public class RegistrationController {
 	
 	public static final Logger LOG = LoggerFactory.getLogger(RegistrationController.class);
+	
+	@Autowired
+	public PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	public UserDAO userDao;
@@ -140,7 +144,9 @@ public class RegistrationController {
 			user.setEmail(form.getEmail());
 			user.setFirstName(form.getFirstName());
 			user.setLastName(form.getLastName());
-			user.setPassword(form.getPassword());
+			
+			String encryptedPassword = passwordEncoder.encode(form.getPassword());
+			user.setPassword(encryptedPassword);
 			
 			userDao.save(user);
 			

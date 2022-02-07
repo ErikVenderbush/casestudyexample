@@ -12,8 +12,15 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class IndexController {
 	
+	@RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
+	public ModelAndView home(HttpServletRequest request, HttpSession session) throws Exception {
+		ModelAndView response = new ModelAndView();
+		response.setViewName("home");
+		return response;
+	}
+	
 	// Connects to index.jsp
-	@RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public ModelAndView index(HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView response = new ModelAndView();
 		response.setViewName("index");

@@ -44,10 +44,10 @@ public class Manager {
 		// worker3.doWork();
 	}
 	
-	@PostConstruct
-	public void init() {
-		worker1.doWork();
-		worker2.doWork();
-		worker3.doWork();
-	}
+	// @PostConstruct
+	// public void init() {
+	// 	worker1.doWork();
+	// 	worker2.doWork();
+	// 	worker3.doWork();
+	// }
 }

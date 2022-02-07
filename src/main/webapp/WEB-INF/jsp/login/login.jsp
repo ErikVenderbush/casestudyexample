@@ -4,11 +4,11 @@
 
 <h1>Login</h1>
 
-<form method="get" action="/loginSubmit2">
+<form method="POST" action="/login/SecurityPost">
 	<label>Username: </label>
-	<input type="text" name="usernameFromForm"><br>
+	<input type="text" name="username"><br>
 	<label>Password: </label>
-	<input type="password" name="passwordFromForm"><br>
+	<input type="password" name="password"><br>
 	<button class="btn btn-secondary" type="submit">Login</button>
 </form>
 

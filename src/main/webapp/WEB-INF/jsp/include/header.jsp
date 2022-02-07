@@ -36,7 +36,7 @@
 	<!-- implement any html you need to show on every page as a header here -->
 	<nav class="navbar navbar-expand navbar-dark mb-4">
 		<ul class="navbar-nav">
-			<li class="navbar-item"><a class="nav-link" href="/logout">Logout</a></li>
+			<li class="navbar-item"><a class="nav-link" href="/login/logout">Logout</a></li>
 			<li class="navbar-text">|</li>
 			<li class="navbar-item"><a class="nav-link" href="/registration-url-path/register">User Registration</a>
 			</li>
@@ -44,6 +44,8 @@
 			<li class="navbar-item"><a class="nav-link" href="/registration-url-path/userList">User List</a></li>
 			<li class="navbar-text">|</li>
 			<li class="navbar-item"><a class="nav-link" href="/registration-url-path/test">Test</a></li>
+			<li class="navbar-text">|</li>
+			<li class="navbar-item"><a class="nav-link" href="/admin/home">Admin Home</a></li>
 		</ul>
 	</nav>
 	
